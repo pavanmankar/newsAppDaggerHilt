@@ -16,6 +16,7 @@ import com.example.newstrending.data.model.Article
 import com.example.newstrending.databinding.ActivitySearchBinding
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
+import com.example.newstrending.ui.country.viewmodel.CountryViewModel
 import com.example.newstrending.ui.search.viewmodel.SearchViewModel
 import com.example.newstrending.ui.topheadline.view.TopHeadlineAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
+class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>(SearchViewModel::class.java) {
 
     companion object {
         fun getIntent(context: Context): Intent {

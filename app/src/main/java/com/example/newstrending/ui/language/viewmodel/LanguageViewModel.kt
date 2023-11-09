@@ -1,6 +1,5 @@
 package com.example.newstrending.ui.language.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.example.newstrending.data.repository.LanguageRepository
 import com.example.newstrending.ui.base.BaseViewModel
@@ -21,7 +20,7 @@ class LanguageViewModel @Inject constructor(private val languageRepository: Lang
             languageRepository.getLanguageList().flowOn(Dispatchers.IO).catch {
                 _data.value = UiState.Error(it.toString())
             }.collect {
-                it.sortedBy {
+              val sortedList =   it.sortedBy {
                     when (it.code) {
                         "en" -> 0
                         "he" -> 1
@@ -29,7 +28,7 @@ class LanguageViewModel @Inject constructor(private val languageRepository: Lang
                         else -> 4
                     }
                 }
-                _data.value = UiState.Success(it)
+                _data.value = UiState.Success(sortedList)
             }
         }
     }

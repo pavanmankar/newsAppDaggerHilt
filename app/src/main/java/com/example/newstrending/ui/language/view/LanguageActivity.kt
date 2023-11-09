@@ -17,10 +17,13 @@ import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.language.viewmodel.LanguageViewModel
 import com.example.newstrending.ui.newsource.view.SourceDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LanguageActivity : BaseActivity<LanguageViewModel, ActivityLanguageBinding>() {
+@AndroidEntryPoint
+class LanguageActivity :
+    BaseActivity<LanguageViewModel, ActivityLanguageBinding>(LanguageViewModel::class.java) {
 
     companion object {
         fun getIntent(context: Context): Intent {

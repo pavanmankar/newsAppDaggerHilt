@@ -1,6 +1,5 @@
 package com.example.newstrending.di.module
 
-import com.example.newstrending.di.ActivityScope
 import com.example.newstrending.ui.country.view.CountryListAdapter
 import com.example.newstrending.ui.language.view.LanguageListAdapter
 import com.example.newstrending.ui.newsource.view.NewsourceAdapter
@@ -9,14 +8,16 @@ import com.example.newstrending.ui.topheadline.view.PagingTopHeadlineAdapter
 import com.example.newstrending.ui.topheadline.view.TopHeadlineAdapter
 import dagger.Module
 import dagger.Provides
+
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 
 @Module
 @InstallIn(ActivityComponent::class)
 class ActivityModule {
 
-    @ActivityScope
+    @ActivityScoped
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
 

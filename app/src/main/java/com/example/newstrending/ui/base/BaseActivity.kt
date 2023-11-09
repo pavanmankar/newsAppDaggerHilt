@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<T : BaseViewModel<*>, ViewBindingType : ViewBinding>(private val viewModelClass: Class<T>) :
+    AppCompatActivity() {
 
-
-    @Inject
     lateinit var viewModel: T
 
     private var _binding: ViewBindingType? = null
@@ -21,12 +19,17 @@ abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = setupViewBinding(layoutInflater)
+        setupViewModel()
         setContentView(requireNotNull(_binding).root)
         setupView(savedInstanceState)
         setupObserver()
     }
 
-    fun setUpToolbar(title:String){
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[viewModelClass]
+    }
+
+    fun setUpToolbar(title: String) {
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

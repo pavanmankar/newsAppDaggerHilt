@@ -16,13 +16,16 @@ import com.example.newstrending.data.model.NewSource
 import com.example.newstrending.databinding.ActivitySourceDetailBinding
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
+import com.example.newstrending.ui.country.viewmodel.CountryViewModel
 import com.example.newstrending.ui.newsource.viewmodel.NewSourceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SourceDetailActivity : BaseActivity<NewSourceViewModel, ActivitySourceDetailBinding>() {
+class SourceDetailActivity : BaseActivity<NewSourceViewModel, ActivitySourceDetailBinding>(
+    NewSourceViewModel::class.java
+) {
 
     companion object {
         const val EXTRAS_CATEGORY = "EXTRAS_CATEGORY"

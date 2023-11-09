@@ -1,11 +1,8 @@
 package com.example.newstrending.di.module
 
-import android.content.Context
 import com.example.newstrending.BuildConfig
-import com.example.newstrending.NewsTrendingApplication
 import com.example.newstrending.data.api.AuthTokenInterceptor
 import com.example.newstrending.data.api.NetworkService
-import com.example.newstrending.di.ApplicationContext
 import com.example.newstrending.di.BaseUrl
 import dagger.Module
 import dagger.Provides
@@ -19,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApplicationModule() {
+class ApplicationModule {
 
     @BaseUrl
     @Provides

@@ -1,6 +1,5 @@
 package com.example.newstrending.ui.country.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.example.newstrending.data.repository.CountryRepository
 import com.example.newstrending.ui.base.BaseViewModel
@@ -21,7 +20,7 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
             countryRepository.getCountryList().flowOn(Dispatchers.IO).catch { e ->
                 _data.value = UiState.Error(e.toString())
             }.collect {
-                it.sortedBy {
+               val sortedList = it.sortedBy {
                     when (it.code) {
                         "IN" -> 0
                         "US" -> 1
@@ -30,7 +29,7 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
                         else -> 4
                     }
                 }
-                _data.value = UiState.Success(it)
+                _data.value = UiState.Success(sortedList)
             }
         }
     }

@@ -16,13 +16,16 @@ import com.example.newstrending.data.model.NewSource
 import com.example.newstrending.databinding.ActivityNewSourceBinding
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
+import com.example.newstrending.ui.country.viewmodel.CountryViewModel
 import com.example.newstrending.ui.newsource.viewmodel.NewSourceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NewSourceActivity : BaseActivity<NewSourceViewModel, ActivityNewSourceBinding>() {
+class NewSourceActivity : BaseActivity<NewSourceViewModel, ActivityNewSourceBinding>(
+    NewSourceViewModel::class.java
+) {
 
     companion object {
         fun getIntent(context: Context): Intent {

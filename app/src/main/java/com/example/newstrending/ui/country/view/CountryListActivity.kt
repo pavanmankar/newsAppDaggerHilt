@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CountryListActivity : BaseActivity<CountryViewModel, ActivityCountryListBinding>() {
+class CountryListActivity : BaseActivity<CountryViewModel, ActivityCountryListBinding>(CountryViewModel::class.java) {
 
 
     companion object {
