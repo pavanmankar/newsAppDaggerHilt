@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.NewSource
 import com.example.newstrending.databinding.ActivitySourceDetailBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.newsource.viewmodel.NewSourceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SourceDetailActivity : BaseActivity<NewSourceViewModel, ActivitySourceDetailBinding>() {
 
     companion object {
@@ -40,13 +41,8 @@ class SourceDetailActivity : BaseActivity<NewSourceViewModel, ActivitySourceDeta
 
     @Inject
     lateinit var adapter: SourceHeadlineAdapter
-
     lateinit var languageCode: String
     lateinit var category: String
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectSourceDetailActivity(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView

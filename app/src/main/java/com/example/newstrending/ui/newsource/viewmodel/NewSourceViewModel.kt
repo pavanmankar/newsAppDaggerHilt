@@ -6,12 +6,15 @@ import com.example.newstrending.data.model.NewSource
 import com.example.newstrending.data.repository.NewSourceRepository
 import com.example.newstrending.ui.base.BaseViewModel
 import com.example.newstrending.ui.base.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewSourceViewModel(private val newSourceRepository: NewSourceRepository) : BaseViewModel<List<*>>() {
+@HiltViewModel
+class NewSourceViewModel @Inject constructor(private val newSourceRepository: NewSourceRepository) : BaseViewModel<List<*>>() {
 
     fun fetchNewSources(category: String,langaueCode : String) {
         viewModelScope.launch {

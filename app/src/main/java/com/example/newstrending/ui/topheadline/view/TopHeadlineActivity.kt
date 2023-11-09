@@ -13,13 +13,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.Article
 import com.example.newstrending.databinding.ActivityTopHeadlineBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.topheadline.viewmodel.TopHeadlineViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopHeadlineActivity : BaseActivity<TopHeadlineViewModel, ActivityTopHeadlineBinding>() {
 
     companion object {
@@ -51,10 +52,6 @@ class TopHeadlineActivity : BaseActivity<TopHeadlineViewModel, ActivityTopHeadli
 
     override fun setupViewBinding(inflater: LayoutInflater): ActivityTopHeadlineBinding {
         return ActivityTopHeadlineBinding.inflate(inflater)
-    }
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectTopHeadlineActivity(this)
     }
 
     private fun getIntentAndFetchData() {

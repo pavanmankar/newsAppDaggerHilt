@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.CountryList
 import com.example.newstrending.databinding.ActivityCountryListBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.country.viewmodel.CountryViewModel
 import com.example.newstrending.ui.topheadline.view.TopHeadlineActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class CountryListActivity : BaseActivity<CountryViewModel, ActivityCountryListBinding>() {
 
 
@@ -32,10 +33,6 @@ class CountryListActivity : BaseActivity<CountryViewModel, ActivityCountryListBi
 
     @Inject
     lateinit var adapter: CountryListAdapter
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectCountryListActivity(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         setUpToolbar("Countries")

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.LanguageList
 import com.example.newstrending.databinding.ActivityLanguageBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.language.viewmodel.LanguageViewModel
@@ -31,10 +30,6 @@ class LanguageActivity : BaseActivity<LanguageViewModel, ActivityLanguageBinding
 
     @Inject
     lateinit var adapter: LanguageListAdapter
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectLanguageActivity(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         setUpToolbar("Languages")

@@ -3,11 +3,14 @@ package com.example.newstrending.di.module
 import android.content.Context
 import com.example.newstrending.BuildConfig
 import com.example.newstrending.NewsTrendingApplication
+import com.example.newstrending.data.api.AuthTokenInterceptor
 import com.example.newstrending.data.api.NetworkService
 import com.example.newstrending.di.ApplicationContext
 import com.example.newstrending.di.BaseUrl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,13 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: NewsTrendingApplication) {
-
-    @ApplicationContext
-    @Provides
-    fun getContext(): Context {
-        return application
-    }
+@InstallIn(SingletonComponent::class)
+class ApplicationModule() {
 
     @BaseUrl
     @Provides
@@ -33,11 +31,18 @@ class ApplicationModule(private val application: NewsTrendingApplication) {
 
     @Provides
     @Singleton
-    fun provideHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        val builder = OkHttpClient().newBuilder()
-            .addInterceptor(httpLoggingInterceptor)
+    fun provideHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authTokenInterceptor: AuthTokenInterceptor
+    ): OkHttpClient {
+        val builder = OkHttpClient().newBuilder().addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(authTokenInterceptor)
         return builder.build()
     }
+
+    @Provides
+    @Singleton
+    fun provideAuthTokenInterceptor(): AuthTokenInterceptor = AuthTokenInterceptor()
 
     @Provides
     @Singleton
@@ -54,15 +59,9 @@ class ApplicationModule(private val application: NewsTrendingApplication) {
     @Singleton
     @Provides
     fun provideNetworkService(
-        @BaseUrl baseUrl: String,
-        okHttp : OkHttpClient,
-        gson: GsonConverterFactory
+        @BaseUrl baseUrl: String, okHttp: OkHttpClient, gson: GsonConverterFactory
     ): NetworkService {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(gson)
-            .client(okHttp)
-            .build()
+        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(gson).client(okHttp).build()
             .create(NetworkService::class.java)
     }
 }

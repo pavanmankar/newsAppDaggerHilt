@@ -15,7 +15,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CountryRepository @Inject constructor(@ApplicationContext private val context: Context)  {
+class CountryRepository @Inject constructor(private val context: Context)  {
 
     fun getCountryList(): Flow<List<CountryList>> {
         return flow<List<CountryList>> {

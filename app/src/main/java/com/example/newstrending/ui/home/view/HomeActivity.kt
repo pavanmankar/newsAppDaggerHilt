@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.example.newstrending.NewsTrendingApplication
 import com.example.newstrending.R
 import com.example.newstrending.databinding.ActivityMainBinding
-import com.example.newstrending.di.component.DaggerActivityComponent
 import com.example.newstrending.di.module.ActivityModule
 import com.example.newstrending.ui.country.view.CountryListActivity
 import com.example.newstrending.ui.home.viewmodel.HomeViewModel
@@ -27,7 +26,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        injectDependency()
         handleClickEvent()
     }
 
@@ -58,9 +56,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun injectDependency() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsTrendingApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().injectHomeActivity(this)
-    }
 }

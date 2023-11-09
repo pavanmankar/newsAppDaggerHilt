@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.NewSource
 import com.example.newstrending.databinding.ActivityNewSourceBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.newsource.viewmodel.NewSourceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewSourceActivity : BaseActivity<NewSourceViewModel, ActivityNewSourceBinding>() {
 
     companion object {
@@ -56,10 +57,6 @@ class NewSourceActivity : BaseActivity<NewSourceViewModel, ActivityNewSourceBind
 
     override fun setupViewBinding(inflater: LayoutInflater): ActivityNewSourceBinding {
         return ActivityNewSourceBinding.inflate(inflater)
-    }
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectNewSorceActivity(this)
     }
 
     override fun setupObserver() {

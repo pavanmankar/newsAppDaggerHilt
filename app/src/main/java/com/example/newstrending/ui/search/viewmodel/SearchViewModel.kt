@@ -6,11 +6,14 @@ import com.example.newstrending.data.repository.TopHeadlineRepository
 import com.example.newstrending.ui.base.BaseViewModel
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.util.AppConstant
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(private val topHeadlineRepository: TopHeadlineRepository) :
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val topHeadlineRepository: TopHeadlineRepository) :
     BaseViewModel<List<*>>() {
 
     private val searchQuery = MutableStateFlow("")

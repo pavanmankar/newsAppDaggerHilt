@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.example.newstrending.NewsTrendingApplication
-import com.example.newstrending.di.component.ActivityComponent
-import com.example.newstrending.di.component.DaggerActivityComponent
-import com.example.newstrending.di.module.ActivityModule
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding> : AppCompatActivity() {
@@ -22,7 +19,6 @@ abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding
     protected val binding get() = requireNotNull(_binding)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies(buildActivityComponent())
         super.onCreate(savedInstanceState)
         _binding = setupViewBinding(layoutInflater)
         setContentView(requireNotNull(_binding).root)
@@ -38,13 +34,6 @@ abstract class BaseActivity <T : BaseViewModel<*>, ViewBindingType : ViewBinding
 
     protected open fun setupObserver() {
     }
-
-    private fun buildActivityComponent(): ActivityComponent = DaggerActivityComponent.builder()
-        .applicationComponent((application as NewsTrendingApplication).applicationComponent)
-        .activityModule(ActivityModule(this)).build()
-
-
-    protected abstract fun injectDependencies(activityComponent: ActivityComponent)
 
     abstract fun setupView(savedInstanceState: Bundle?)
 

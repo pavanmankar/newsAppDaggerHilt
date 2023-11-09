@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
@@ -15,14 +14,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newstrending.data.model.Article
 import com.example.newstrending.databinding.ActivitySearchBinding
-import com.example.newstrending.di.component.ActivityComponent
 import com.example.newstrending.ui.base.BaseActivity
 import com.example.newstrending.ui.base.UiState
 import com.example.newstrending.ui.search.viewmodel.SearchViewModel
 import com.example.newstrending.ui.topheadline.view.TopHeadlineAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
 
     companion object {
@@ -52,9 +52,6 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
         }
     }
 
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.injectSearchActivity(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         setUpToolbar("Search")

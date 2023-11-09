@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.newstrending.data.repository.CountryRepository
 import com.example.newstrending.ui.base.BaseViewModel
 import com.example.newstrending.ui.base.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CountryViewModel(private val countryRepository: CountryRepository) :
+@HiltViewModel
+class CountryViewModel @Inject constructor(private val countryRepository: CountryRepository) :
     BaseViewModel<List<*>>() {
 
     fun fetchCountryList() {
