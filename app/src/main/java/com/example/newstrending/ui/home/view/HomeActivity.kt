@@ -1,13 +1,8 @@
 package com.example.newstrending.ui.home.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.newstrending.NewsTrendingApplication
-import com.example.newstrending.R
 import com.example.newstrending.databinding.ActivityMainBinding
-import com.example.newstrending.di.module.ActivityModule
 import com.example.newstrending.ui.country.view.CountryListActivity
 import com.example.newstrending.ui.home.viewmodel.HomeViewModel
 import com.example.newstrending.ui.language.view.LanguageActivity
