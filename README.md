@@ -1,6 +1,6 @@
 # MVVM Architecture Android: Sample App (Hilt)
 This repository contains a sample app that implements MVVM architecture using Kotlin, Hilt,
-Retrofit, Coroutines, Flow, StateFlow, etc.
+Retrofit, Coroutines, Flow, Stateflow, Room, etc.
 
 ## Major Highlights
 
@@ -13,6 +13,7 @@ Retrofit, Coroutines, Flow, StateFlow, etc.
 - Stateflow
 - View binding
 - Unit Test
+- Offline Support
 
 ## Dagger2 and Dagger Hilt Main Differences
 
@@ -81,13 +82,14 @@ The main advantage of using MVVM, there is no two-way dependency between ViewMod
 - Fetching News
 - Top Headlines News
 - News Based on Source
-- News Based on Single/Multi Country Selection
-- News Based on Single/Multi Language Selection
+- News Based on Selection
+- News Based on Language Selection
 - Instant Search using Flows Operator
   * Debounce
   * Filter
   * DistinctUntilChanged
   * FlatMapLatest
+  * Map
 - Unit Test
   - Mockito
   - JUnit
