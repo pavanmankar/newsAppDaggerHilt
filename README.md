@@ -17,13 +17,14 @@ Retrofit, Coroutines, Flow, Stateflow, Room, etc.
 
 ## Dagger2 and Dagger Hilt Main Differences
 
-## Dagger2
+## [Dagger2](https://github.com/pavanmankar/newsTrending)
 - It is a fully-featured, compile-time dependency injection framework.
 - Configuration: Requires a lot of boilerplate code and manual configuration.
 - Learning Curve: Steeper learning curve due to its comprehensive feature set.
 - Flexibility: Offers a high level of flexibility and customization.
 - Use Cases: Suitable for complex.
 - There are annotations defined in Dagger 2 to specify which operation to take. We will now briefly touch on these.
+- [Dagger Project Link](https://github.com/pavanmankar/newsTrending)
 
 ## @Provides
 The classes to be used are specified here. Dagger finds and retrieves the desired injection by looking at the @Provide methods.
